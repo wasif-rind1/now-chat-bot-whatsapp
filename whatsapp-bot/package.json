@@ -1,9 +1,9 @@
 {
   "name": "kh-whatsapp-bot",
   "version": "2.0.0",
-  "description": "Advanced WhatsApp AI Bot powered by GPT-4o — by Kamran Hasil",
+  "description": "Advanced WhatsApp AI Bot powered by GPT-4o — by Kamran Hasil and Wasif Rind",
   "main": "index.js",
-  "author": "Kamran Hasil",
+  "author": "Kamran Hasil and Wasif Rind",
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
@@ -14,12 +14,15 @@
     "pm2:restart": "pm2 restart kh-bot"
   },
   "dependencies": {
-    "chalk": "4.1.2",
-    "dotenv": "^16.4.5",
-    "openai": "^4.52.7",
-    "ora": "5.4.1",
-    "qrcode-terminal": "^0.12.0",
-    "whatsapp-web.js": "^1.23.0"
+  "groq-sdk": "^0.3.3",
+  "whatsapp-web.js": "^1.26.0",
+  "openai": "^4.0.0",
+  "qrcode-terminal": "^0.12.0",
+  "dotenv": "^16.0.0",
+  "chalk": "^4.1.2",
+  "ora": "^5.4.1"
+},
+}
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
@@ -34,6 +37,6 @@
     "openai",
     "ai",
     "chatbot",
-    "kamran-hasil"
+    "kamran-hasil and Wasif Rind"
   ]
 }
