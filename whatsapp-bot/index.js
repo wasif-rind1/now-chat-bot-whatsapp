@@ -22,8 +22,9 @@ const openai = new Groq({ apiKey: process.env.GROQ_API_KEY });
 // ─── WhatsApp Client ─────────────────────────────────────
 const client = new Client({
   authStrategy: new LocalAuth({ clientId: "kh-bot" }),
-  puppeteer: {
+ puppeteer: {
     headless: true,
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || "/usr/bin/chromium",
     args: [
       "--no-sandbox",
       "--disable-setuid-sandbox",
