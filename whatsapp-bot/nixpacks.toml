@@ -5,4 +5,4 @@ nixPkgs = ["chromium", "nodejs_18"]
 cmds = ["npm install"]
 
 [start]
-cmd = "PUPPETEER_EXECUTABLE_PATH=$(which chromium) node index.js"
+cmd = "PUPPETEER_EXECUTABLE_PATH=$(which chromium-browser || which chromium || which google-chrome-stable) node index.js"
