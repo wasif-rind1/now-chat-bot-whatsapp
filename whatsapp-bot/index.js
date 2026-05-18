@@ -1,14 +1,14 @@
 /**
  * ╔══════════════════════════════════════════════════════╗
- * ║       KH WhatsApp AI Bot — by Kamran Hasil           ║
- * ║       Powered by OpenAI GPT + whatsapp-web.js        ║
+ * ║ KW WhatsApp AI Bot — by Kamran Hasil and Wasif Rind  ║
+ * ║       Powered by Groq + whatsapp-web.js              ║
  * ╚══════════════════════════════════════════════════════╝
  */
 
 require("dotenv").config();
 const { Client, LocalAuth, MessageMedia } = require("whatsapp-web.js");
 const qrcode = require("qrcode-terminal");
-const OpenAI = require("openai");
+const Groq = require("groq-sdk");
 const chalk = require("chalk");
 const ora = require("ora");
 const { handleCommand, isCommand } = require("./src/commands");
@@ -17,7 +17,7 @@ const { humanDelay, randomThinkingDelay } = require("./src/utils");
 const { log } = require("./src/logger");
 
 // ─── OpenAI Setup ────────────────────────────────────────
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const openai = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 // ─── WhatsApp Client ─────────────────────────────────────
 const client = new Client({
@@ -46,15 +46,15 @@ const client = new Client({
 console.log(chalk.cyan(`
 ╔══════════════════════════════════════════════════════════╗
 ║                                                          ║
-║   ██╗  ██╗██╗  ██╗    ██████╗  ██████╗ ████████╗        ║
-║   ██║ ██╔╝██║  ██║    ██╔══██╗██╔═══██╗╚══██╔══╝        ║
-║   █████╔╝ ███████║    ██████╔╝██║   ██║   ██║           ║
-║   ██╔═██╗ ██╔══██║    ██╔══██╗██║   ██║   ██║           ║
-║   ██║  ██╗██║  ██║    ██████╔╝╚██████╔╝   ██║           ║
-║   ╚═╝  ╚═╝╚═╝  ╚═╝    ╚═════╝  ╚═════╝    ╚═╝           ║
+║   ██╗  ██╗██╗  ██╗    ██████╗  ██████╗ ████████╗         ║
+║   ██║ ██╔╝██║  ██║    ██╔══██╗██╔═══██╗╚══██╔══╝         ║
+║   █████╔╝ ███████║    ██████╔╝██║   ██║   ██║            ║
+║   ██╔═██╗ ██╔══██║    ██╔══██╗██║   ██║   ██║            ║
+║   ██║  ██╗██║  ██║    ██████╔╝╚██████╔╝   ██║            ║
+║   ╚═╝  ╚═╝╚═╝  ╚═╝    ╚═════╝  ╚═════╝    ╚═╝            ║
 ║                                                          ║
-║        WhatsApp AI Bot  •  Owner: Kamran Hasil           ║
-║        Powered by GPT-4o  •  v2.0.0                     ║
+║  WhatsApp AI Bot  •  Owner: Kamran Hasil and Wasif Rind  ║
+║        Powered by GPT-4o  •  v2.0.0                      ║
 ╚══════════════════════════════════════════════════════════╝
 `));
 
@@ -196,7 +196,7 @@ async function getAIReply(history, userMessage, senderName, isOwner) {
   ];
 
   const completion = await openai.chat.completions.create({
-    model: process.env.GPT_MODEL || "gpt-4o",
+    model: process.env.GPT_MODEL || "llama3-8b-8192",
     messages,
     max_tokens: parseInt(process.env.MAX_TOKENS) || 500,
     temperature: parseFloat(process.env.TEMPERATURE) || 0.85,
